@@ -1,0 +1,6 @@
+[submodule "planejamento-ethos"]
+	path = planejamento-ethos
+	url = https://github.com/marcosfavoretti/PlanejadorFabril.git
+[submodule "PlanejamentoEthosPortal"]
+	path = PlanejamentoEthosPortal
+	url = https://github.com/marcosfavoretti/PlanejadorFabrilPortal.git
