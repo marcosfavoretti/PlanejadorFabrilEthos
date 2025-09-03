@@ -1,0 +1,50 @@
+deixar em aberto dividas mais urgentes. (AG PARA ACHAR MELHOR SEQUENCIA DE PLANEJAMENTO DE PEDIDOS)
+
+verificao de possibilidade de alocação do replanejamento
+
+🆗 quando replanejo eu preciso de algum jeito dar delete nos snapshot
+
+buscar alvo e calcular efetivos alvos para o replanejamento; (TEM QUE MELHORAR)
+
+pensar em algo para resolver problema de revisoes de itens
+
+calendario valido -- CALENDARIO NO BANCO ORACLE -- servico para sincronizacao do calendario
+
+pull request para o gestor --> implementar o role de gestor 
+
+fitro de data do compoennte da tabela - BUG
+
+BUG causado por usar startOfDay... ele joga no banco data com horas zeradas e outra hora que eu faço salvando com new Date() ele se perde na hora de levar pro front end com o uso do (| date)
+
+dividas melhorar o fluxo - DIVIDA PARA REPLANEJAMENTO FUNCIONAL
+
+AG Com dias sobrando e dias com divida para por na fitnesss
+	- AG PARA LOGICA DE ALOCACAO
+		--possibiliade de retrabalho
+		--dias em atraso 
+	- AG PARA SEQUENCIA DE PEDIDOS
+		--dias em atraso 
+		--
+🆗 apagar dividas quando for replanejar um mesmo PEDIDOS
+
+🆗 pipe de validacao para subir fabrica
+
+🆗 replanejamento manual (edicoes de planejamentos) esta triggando nada
+
+resolver o kubb no angular para nao ter mais dor de cabeça > falta so o endpoint dinamico e .ts ser removid
+
+🆗 descricao do item 
+
+servico de sumarizacao de producao
+
+projetar que a tabela de producao se crie apenas quando o servico de producao for validar o planejamento
+
+--
+
+para hoje
+
+--sistema de dividas feito --nao esta removendo dividas --nao esta somando dividas
+	--dividas em: 
+		--planejamento
+		--atualizacao de planejamento
+--importar tabela de feriados
