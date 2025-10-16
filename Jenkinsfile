@@ -14,7 +14,7 @@ pipeline {
                     $class: 'GitSCM',
                     branches: [[name: '*/main']],
                     userRemoteConfigs: [[
-                        url: 'https://github.com/marcosfavoretti/PlanejadorFabril.git', // URL do seu repositório principal
+                        url: 'https://github.com/marcosfavoretti/PlanejadorFabrilEthos.git', // URL do seu repositório principal
                         credentialsId: 'github-ssh-key' // ID da credencial SSH configurada no Jenkins
                     ]],
                     extensions: [[$class: 'SubmoduleOption', disableSubmodules: false, recursiveSubmodules: true, reference: '', trackingSubmodules: false, parentCredentials: true]]
