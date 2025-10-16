@@ -1,3 +1,4 @@
 .env
 melhorias.txt
 melhorias2.txt
+docker-compose.override.yml
