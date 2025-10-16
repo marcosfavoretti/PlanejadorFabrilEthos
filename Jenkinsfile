@@ -26,10 +26,16 @@ pipeline {
         // Esta etapa utiliza o seu arquivo docker-compose.yml para construir as imagens e iniciar os contêineres.
         stage('Build and Run Docker Compose') {
             steps {
-                // O comando 'docker-compose up' com '--build' força a reconstrução das imagens se houver mudanças.
-                // '-d' (detached) faz com que os contêineres rodem em segundo plano.
-                // Usamos o seu docker-compose.yml original, que é a prática recomendada.
-                sh 'docker-compose up -d --build'
+                // Carrega os dois arquivos secretos em variáveis de ambiente temporárias
+                withCredentials([
+                    file(credentialsId: 'ethos_planejamento_infra_env', variable: 'INFRA_ENV_FILE'),
+                    file(credentialsId: 'ethos_planejador_frontend', variable: 'FRONTEND_ENV_FILE'),
+                    file(credentialsId: 'ethos_planejador_backend', variable: 'BACKEND_ENV_FILE')
+                ]) {
+                    // O comando 'docker-compose' usa a flag '--env-file' para cada arquivo.
+                    // As variáveis de ambos os arquivos serão carregadas.
+                    sh 'docker-compose --env-file $INFRA_ENV_FILE --env-file $FRONTEND_ENV_FILE --env-file $BACKEND_ENV_FILE up -d --build'
+                }
             }
         }
         
