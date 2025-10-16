@@ -6,11 +6,35 @@ services:
       context: ./planejamento-ethos # Usa o Dockerfile na raiz do projeto backend
       target: production
     image: planejamentoethos:latest
-    # A diretiva 'env_file' foi REMOVIDA daqui.
-    # As variáveis serão injetadas pelo Jenkins ou pelo docker-compose.override.yml
     ports:
       - "${API_PORT}:${API_PORT}"
     command: ["node", "dist/apps/planejamento-ethos/main.js"]
+    environment:
+      - BD=${BD}
+      - TZ=${TZ}
+      - SECRET=${SECRET}
+      - EXPIREHOURS=${EXPIREHOURS}
+      - CHECKPOINT_RANGE=${CHECKPOINT_RANGE}
+      - PORT=${PORT}
+      - BATELADAMAX=${BATELADAMAX}
+      - PINTURAMAX=${PINTURAMAX}
+      - ORACLEHOST=${ORACLEHOST}
+      - ORACLEPORT=${ORACLEPORT}
+      - ORACLEUSER=${ORACLEUSER}
+      - ORACLEPASSWORD=${ORACLEPASSWORD}
+      - ORACLESID=${ORACLESID}
+      - SQLREPO=${SQLREPO}
+      - ESTRUTURA_SERVICE=${ESTRUTURA_SERVICE}
+      - SQLUSER=${SQLUSER}
+      - SQLSENHA=${SQLSENHA}
+      - SQLHOST=${SQLHOST}
+      - SQLDATABASE=${SQLDATABASE}
+      - SQLPORT=${SQLPORT}
+      - HTTPEMAIL=${HTTPEMAIL}
+      - NODE_ENV=${NODE_ENV}
+      - REDIS_PORT=${REDIS_PORT}
+      - REDIS_HOST=${REDIS_HOST}
+      - CORS_HOSTS=${CORS_HOSTS}
     depends_on:
       redis:
         condition: service_started
@@ -27,6 +51,33 @@ services:
       context: ./planejamento-ethos
       target: production
     image: planejamentoethos:latest
+    environment:
+      environment:
+      - BD=${BD}
+      - TZ=${TZ}
+      - SECRET=${SECRET}
+      - EXPIREHOURS=${EXPIREHOURS}
+      - CHECKPOINT_RANGE=${CHECKPOINT_RANGE}
+      - PORT=${PORT}
+      - BATELADAMAX=${BATELADAMAX}
+      - PINTURAMAX=${PINTURAMAX}
+      - ORACLEHOST=${ORACLEHOST}
+      - ORACLEPORT=${ORACLEPORT}
+      - ORACLEUSER=${ORACLEUSER}
+      - ORACLEPASSWORD=${ORACLEPASSWORD}
+      - ORACLESID=${ORACLESID}
+      - SQLREPO=${SQLREPO}
+      - ESTRUTURA_SERVICE=${ESTRUTURA_SERVICE}
+      - SQLUSER=${SQLUSER}
+      - SQLSENHA=${SQLSENHA}
+      - SQLHOST=${SQLHOST}
+      - SQLDATABASE=${SQLDATABASE}
+      - SQLPORT=${SQLPORT}
+      - HTTPEMAIL=${HTTPEMAIL}
+      - NODE_ENV=${NODE_ENV}
+      - REDIS_PORT=${REDIS_PORT}
+      - REDIS_HOST=${REDIS_HOST}
+      - CORS_HOSTS=${CORS_HOSTS}
     command: ["node", "dist/apps/planeja-worker/main.js"]
     depends_on:
       api:
@@ -40,6 +91,33 @@ services:
     build:
       context: ./planejamento-ethos
       target: production
+    environment:
+      environment:
+      - BD=${BD}
+      - TZ=${TZ}
+      - SECRET=${SECRET}
+      - EXPIREHOURS=${EXPIREHOURS}
+      - CHECKPOINT_RANGE=${CHECKPOINT_RANGE}
+      - PORT=${PORT}
+      - BATELADAMAX=${BATELADAMAX}
+      - PINTURAMAX=${PINTURAMAX}
+      - ORACLEHOST=${ORACLEHOST}
+      - ORACLEPORT=${ORACLEPORT}
+      - ORACLEUSER=${ORACLEUSER}
+      - ORACLEPASSWORD=${ORACLEPASSWORD}
+      - ORACLESID=${ORACLESID}
+      - SQLREPO=${SQLREPO}
+      - ESTRUTURA_SERVICE=${ESTRUTURA_SERVICE}
+      - SQLUSER=${SQLUSER}
+      - SQLSENHA=${SQLSENHA}
+      - SQLHOST=${SQLHOST}
+      - SQLDATABASE=${SQLDATABASE}
+      - SQLPORT=${SQLPORT}
+      - HTTPEMAIL=${HTTPEMAIL}
+      - NODE_ENV=${NODE_ENV}
+      - REDIS_PORT=${REDIS_PORT}
+      - REDIS_HOST=${REDIS_HOST}
+      - CORS_HOSTS=${CORS_HOSTS}
     image: planejamentoethos:latest
     command: ["node", "dist/apps/importa-pedido/main.js"]
     depends_on:
@@ -55,6 +133,9 @@ services:
     restart: always
     ports:
       - "${REDIS_PORT}:${REDIS_PORT}"
+    # --- ALTERAÇÃO AQUI ---
+    volumes:
+      - redis-data:/data
 
   # Frontend Service (PlanejamentoEthosPortal)
   frontend:
@@ -62,9 +143,17 @@ services:
     build:
       context: ./PlanejamentoEthosPortal
       dockerfile: Dockerfile
+    environment:
+      - API_URL=${API_URL}
+      - API_SWAGGER=${API_SWAGGER}
     ports:
       - "${FRONT_PORT}:${FRONT_PORT}"
     depends_on:
       api:
         condition: service_healthy
     restart: always
+
+# --- E AQUI ---
+# Declaração do volume nomeado
+volumes:
+  redis-data:
