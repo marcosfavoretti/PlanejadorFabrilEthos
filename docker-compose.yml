@@ -52,7 +52,6 @@ services:
       target: production
     image: planejamentoethos:latest
     environment:
-      environment:
       - BD=${BD}
       - TZ=${TZ}
       - SECRET=${SECRET}
@@ -92,7 +91,6 @@ services:
       context: ./planejamento-ethos
       target: production
     environment:
-      environment:
       - BD=${BD}
       - TZ=${TZ}
       - SECRET=${SECRET}
