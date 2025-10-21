@@ -1,3 +1,7 @@
+adicionar o nome dos itens em todas as tabelas
+
+bug na tabela de pedidos, nao fica disponivel para adicionar
+
 deixar em aberto dividas mais urgentes. (AG PARA ACHAR MELHOR SEQUENCIA DE PLANEJAMENTO DE PEDIDOS)
 
 verificao de possibilidade de alocação do replanejamento
